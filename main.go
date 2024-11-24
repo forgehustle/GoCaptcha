@@ -1,14 +1,14 @@
 package main
 
 import (
-	PuzzleSliderCaptcha "GoCaptcha/Captcha"
+	SliderCaptcha "GoCaptcha/Captcha"
 	"encoding/json"
 	"fmt"
 	"log"
 )
 
 func main() {
-	captchaData, err := PuzzleSliderCaptcha.GeneratePuzzleSliderCaptcha()
+	captchaData, err := SliderCaptcha.GenerateSliderCaptcha()
 	if err != nil {
 		log.Fatalln("Error generating captcha:", err)
 	}

@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-func TestGeneratePuzzleSliderCaptcha(t *testing.T) {
+func TestGenerateSliderCaptcha(t *testing.T) {
 	// Call the function
-	captchaData, err := GeneratePuzzleSliderCaptcha()
+	captchaData, err := GenerateSliderCaptcha()
 	if err != nil {
 		t.Fatalf("Error generating captcha: %v", err)
 	}

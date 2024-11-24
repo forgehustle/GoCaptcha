@@ -59,7 +59,7 @@ func init() {
 	slideCapt = builder.Make()
 }
 
-func GeneratePuzzleSliderCaptcha() (*SliderCaptchaData, error) {
+func GenerateSliderCaptcha() (*SliderCaptchaData, error) {
 	captData, err := slideCapt.Generate()
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate captcha: %v", err)
