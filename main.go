@@ -1,7 +1,7 @@
 package main
 
 import (
-	SliderCaptcha "GoCaptcha/Captcha"
+	SliderCaptcha "GoCaptcha/SlideCaptcha"
 	"encoding/json"
 	"fmt"
 	"log"
