@@ -11,9 +11,16 @@ import (
 )
 
 // PuzzleSliderCaptcha defines the return structure
-type PuzzleSliderCaptcha struct {
+type SliderCaptchaData struct {
 	CaptchaImage string `json:"CaptchaImage"`
 	PuzzleImage  string `json:"PuzzleImage"`
+	X            int    `json:"x"`
+	Y            int    `json:"y"`
+	Width        int    `json:"width"`
+	Height       int    `json:"height"`
+	Angle        int    `json:"angle"`
+	TileX        int    `json:"tile_x"`
+	TileY        int    `json:"tile_y"`
 }
 
 var slideCapt slide.Captcha
@@ -52,8 +59,7 @@ func init() {
 	slideCapt = builder.Make()
 }
 
-// GeneratePuzzleSliderCaptcha generates a captcha and returns it as a PuzzleSliderCaptcha struct
-func GeneratePuzzleSliderCaptcha() (*PuzzleSliderCaptcha, error) {
+func GeneratePuzzleSliderCaptcha() (*SliderCaptchaData, error) {
 	captData, err := slideCapt.Generate()
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate captcha: %v", err)
@@ -69,8 +75,20 @@ func GeneratePuzzleSliderCaptcha() (*PuzzleSliderCaptcha, error) {
 		return nil, fmt.Errorf("failed to get puzzle image: %v", err)
 	}
 
-	return &PuzzleSliderCaptcha{
+	dotData := captData.GetData()
+	if dotData == nil {
+		log.Fatalln(">>>>> generate error")
+	}
+
+	return &SliderCaptchaData{
 		CaptchaImage: captchaImage,
 		PuzzleImage:  puzzleImage,
+		X:            dotData.X,
+		Y:            dotData.Y,
+		Width:        dotData.Width,
+		Height:       dotData.Height,
+		Angle:        dotData.Angle,
+		TileX:        dotData.TileX,
+		TileY:        dotData.TileY,
 	}, nil
 }

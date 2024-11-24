@@ -2,6 +2,7 @@ package main
 
 import (
 	PuzzleSliderCaptcha "GoCaptcha/Captcha"
+	"encoding/json"
 	"fmt"
 	"log"
 )
@@ -11,7 +12,8 @@ func main() {
 	if err != nil {
 		log.Fatalln("Error generating captcha:", err)
 	}
-
-	fmt.Printf("CaptchaImage: %s\n", captchaData.CaptchaImage)
-	fmt.Printf("PuzzleImage: %s\n", captchaData.PuzzleImage)
+	// Marshal dotData and print (for debugging)
+	dots, _ := json.Marshal(captchaData)
+	//fmt.Println(">>>>> ", string(dots))
+	fmt.Printf(string(dots))
 }
