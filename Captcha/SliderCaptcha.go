@@ -20,33 +20,33 @@ var slideCapt slide.Captcha
 
 func init() {
 	builder := slide.NewBuilder(
-			slide.WithEnableGraphVerticalRandom(true),
+		slide.WithEnableGraphVerticalRandom(true),
 	)
 
 	// Load resources
 	imgs, err := images.GetImages()
 	if err != nil {
-			log.Fatalln("Failed to load background images:", err)
+		log.Fatalln("Failed to load background images:", err)
 	}
 
 	graphs, err := tiles.GetTiles()
 	if err != nil {
-			log.Fatalln("Failed to load graph tiles:", err)
+		log.Fatalln("Failed to load graph tiles:", err)
 	}
 
 	// Prepare graph images
 	var newGraphs = make([]*slide.GraphImage, 0, len(graphs))
 	for _, graph := range graphs {
-			newGraphs = append(newGraphs, &slide.GraphImage{
-					OverlayImage: graph.OverlayImage,
-					MaskImage:    graph.MaskImage,
-					ShadowImage:  graph.ShadowImage,
-			})
+		newGraphs = append(newGraphs, &slide.GraphImage{
+			OverlayImage: graph.OverlayImage,
+			MaskImage:    graph.MaskImage,
+			ShadowImage:  graph.ShadowImage,
+		})
 	}
 
 	builder.SetResources(
-			slide.WithGraphImages(newGraphs),
-			slide.WithBackgrounds(imgs),
+		slide.WithGraphImages(newGraphs),
+		slide.WithBackgrounds(imgs),
 	)
 
 	slideCapt = builder.Make()
@@ -56,21 +56,21 @@ func init() {
 func GeneratePuzzleSliderCaptcha() (*PuzzleSliderCaptcha, error) {
 	captData, err := slideCapt.Generate()
 	if err != nil {
-			return nil, fmt.Errorf("failed to generate captcha: %v", err)
+		return nil, fmt.Errorf("failed to generate captcha: %v", err)
 	}
 
 	captchaImage, err := captData.GetMasterImage().ToBase64DataWithQuality(option.QualityNone)
 	if err != nil {
-			return nil, fmt.Errorf("failed to get captcha image: %v", err)
+		return nil, fmt.Errorf("failed to get captcha image: %v", err)
 	}
 
 	puzzleImage, err := captData.GetTileImage().ToBase64Data()
 	if err != nil {
-			return nil, fmt.Errorf("failed to get puzzle image: %v", err)
+		return nil, fmt.Errorf("failed to get puzzle image: %v", err)
 	}
 
 	return &PuzzleSliderCaptcha{
-			CaptchaImage: captchaImage,
-			PuzzleImage:  puzzleImage,
+		CaptchaImage: captchaImage,
+		PuzzleImage:  puzzleImage,
 	}, nil
 }
