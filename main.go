@@ -1,19 +1,22 @@
 package main
 
 import (
-	SlideCaptcha "GoCaptcha/SlideCaptcha"
-	"encoding/json"
 	"fmt"
 	"log"
+	ShapeClickCaptcha "GoCaptcha/ClickCaptcha/ShapeClickCaptcha"
 )
 
 func main() {
-	captchaData, err := SlideCaptcha.GenerateSlideCaptcha()
+	// Generate the CAPTCHA
+	captchaResponse, err := ShapeClickCaptcha.GenerateShapeClickCaptcha()
 	if err != nil {
-		log.Fatalln("Error generating captcha:", err)
+		log.Fatalf("Error generating CAPTCHA: %v", err)
 	}
-	// Marshal dotData and print (for debugging)
-	dots, _ := json.Marshal(captchaData)
-	//fmt.Println(">>>>> ", string(dots))
-	fmt.Println(string(dots))
+
+	// Print the CAPTCHA response
+	fmt.Println("Captcha Image (Base64):", captchaResponse.CaptchaImage)
+	fmt.Println("Thumb Image (Base64):", captchaResponse.ThumbImage)
+	fmt.Println("Dot Data:", captchaResponse.DotData)
+
+	// Additional logic here if needed
 }

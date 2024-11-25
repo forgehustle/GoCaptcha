@@ -91,11 +91,17 @@ func GenerateShapeClickCaptcha() (*CaptchaResponse, error) {
 		return nil, fmt.Errorf("generated CAPTCHA data is empty")
 	}
 
-	// Convert dotData (JSON) to Go objects
-	var dots []DotDataItem
+	// Convert dotData (JSON) to a map of DotDataItems
+	var dotMap map[string]DotDataItem
 	dotBytes, _ := json.Marshal(dotData)
-	if err := json.Unmarshal(dotBytes, &dots); err != nil {
+	if err := json.Unmarshal(dotBytes, &dotMap); err != nil {
 		return nil, fmt.Errorf("failed to parse dot data: %v", err)
+	}
+
+	// Convert map to slice
+	var dots []DotDataItem
+	for _, item := range dotMap {
+		dots = append(dots, item)
 	}
 
 	// Generate base64 CAPTCHA image
@@ -117,4 +123,5 @@ func GenerateShapeClickCaptcha() (*CaptchaResponse, error) {
 		DotData:      dots,
 	}, nil
 }
+
 

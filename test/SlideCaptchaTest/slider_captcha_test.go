@@ -2,11 +2,12 @@ package SlideCaptcha
 
 import (
 	"testing"
+	SlideCaptcha "GoCaptcha/SlideCaptcha"
 )
 
 func TestGenerateSlideCaptcha(t *testing.T) {
 	// Call the function
-	captchaData, err := GenerateSlideCaptcha()
+	captchaData, err := SlideCaptcha.GenerateSlideCaptcha()
 	if err != nil {
 		t.Fatalf("Error generating captcha: %v", err)
 	}
