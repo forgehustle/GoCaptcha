@@ -48,7 +48,7 @@ func init() {
 	}
 
 	builder.SetResources(
-		click.WithChars(chars.GetAlphaChars()),
+		click.WithChars(chars.GetChineseChars()),
 		click.WithFonts([]*truetype.Font{fonts}),
 		click.WithBackgrounds(imgs),
 	)
@@ -56,7 +56,7 @@ func init() {
 	textCapt = builder.Make()
 }
 
-func GenerateAlphaClickCaptcha() (*ChineseClickCaptchaData, error) {
+func GenerateChineseClickCaptcha() (*ChineseClickCaptchaData, error) {
 	// Generate CAPTCHA data
 	captchaData, err := textCapt.Generate()
 	if err != nil {
