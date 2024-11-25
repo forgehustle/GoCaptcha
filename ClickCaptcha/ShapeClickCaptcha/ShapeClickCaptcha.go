@@ -64,15 +64,6 @@ func init() {
 		click.WithBackgrounds(bgImages),         // Background images
 	)
 
-	// Configure CAPTCHA settings
-	builder.SetOptions(
-		click.WithImageSize(option.Size{Width: 300, Height: 200}), // CAPTCHA image dimensions
-		click.WithRangeLen(option.RangeVal{Min: 1, Max: 10}),      // Number of clickable shapes
-		click.WithRangeColors([]string{"#FF5733", "#33FF57"}),     // Shape colors
-		click.WithDisplayShadow(true),                             // Enable shadow
-		click.WithShadowColor("#555555"),                          // Shadow color
-	)
-
 	// Generate the CAPTCHA instance
 	shapeCaptcha = builder.MakeWithShape()
 }

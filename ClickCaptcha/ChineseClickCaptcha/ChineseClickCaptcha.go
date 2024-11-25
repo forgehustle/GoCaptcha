@@ -13,7 +13,7 @@ import (
 	"github.com/wenlng/go-captcha/v2/click"
 )
 
-// AlphaClickCaptchaData represents the data returned from the CAPTCHA generation process.
+// ChinesClickCaptchaData represents the data returned from the CAPTCHA generation process.
 type ChineseClickCaptchaData struct {
 	CaptchaImage string        `json:"captcha_image"` // Base64-encoded CAPTCHA image
 	ThumbImage   string        `json:"thumb_image"`   // Base64-encoded thumbnail image
