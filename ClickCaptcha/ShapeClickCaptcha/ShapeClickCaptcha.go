@@ -14,7 +14,7 @@ import (
 )
 
 // CaptchaResponse represents the complete CAPTCHA response structure.
-type CaptchaResponse struct {
+type ShapeClickCaptchaData struct {
 	CaptchaImage string        `json:"captcha_image"` // Base64-encoded CAPTCHA image
 	ThumbImage   string        `json:"thumb_image"`   // Base64-encoded thumbnail image
 	DotData      []DotDataItem `json:"dot_data"`      // Slice of dot data (shapes)
@@ -78,7 +78,7 @@ func init() {
 	shapeCaptcha = builder.MakeWithShape()
 }
 
-func GenerateShapeClickCaptcha() (*CaptchaResponse, error) {
+func GenerateShapeClickCaptcha() (*ShapeClickCaptchaData, error) {
 	// Generate CAPTCHA data
 	captchaData, err := shapeCaptcha.Generate()
 	if err != nil {
@@ -117,7 +117,7 @@ func GenerateShapeClickCaptcha() (*CaptchaResponse, error) {
 	}
 
 	// Return response
-	return &CaptchaResponse{
+	return &ShapeClickCaptchaData{
 		CaptchaImage: CaptchaImage,
 		ThumbImage:   ThumbImage,
 		DotData:      dots,
