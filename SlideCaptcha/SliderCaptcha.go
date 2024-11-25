@@ -1,4 +1,4 @@
-package SliderCaptcha
+package SlideCaptcha
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 )
 
 // PuzzleSliderCaptcha defines the return structure
-type SliderCaptchaData struct {
+type SlideCaptchaData struct {
 	CaptchaImage string `json:"CaptchaImage"`
 	PuzzleImage  string `json:"PuzzleImage"`
 	X            int    `json:"x"`
@@ -59,7 +59,7 @@ func init() {
 	slideCapt = builder.Make()
 }
 
-func GenerateSliderCaptcha() (*SliderCaptchaData, error) {
+func GenerateSlideCaptcha() (*SlideCaptchaData, error) {
 	captData, err := slideCapt.Generate()
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate captcha: %v", err)
@@ -80,7 +80,7 @@ func GenerateSliderCaptcha() (*SliderCaptchaData, error) {
 		log.Fatalln(">>>>> generate error")
 	}
 
-	return &SliderCaptchaData{
+	return &SlideCaptchaData{
 		CaptchaImage: captchaImage,
 		PuzzleImage:  puzzleImage,
 		X:            dotData.X,
