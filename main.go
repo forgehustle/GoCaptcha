@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"log"
-	ShapeClickCaptcha "GoCaptcha/ClickCaptcha/ShapeClickCaptcha"
+	AlphaClickCaptcha "GoCaptcha/ClickCaptcha/AlphaClickCaptcha"
 )
 
 func main() {
 	// Generate the CAPTCHA
-	captchaResponse, err := ShapeClickCaptcha.GenerateShapeClickCaptcha()
+	captchaResponse, err := AlphaClickCaptcha.GenerateAlphaClickCaptcha()
 	if err != nil {
 		log.Fatalf("Error generating CAPTCHA: %v", err)
 	}

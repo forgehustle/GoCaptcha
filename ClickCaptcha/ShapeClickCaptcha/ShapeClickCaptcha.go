@@ -28,7 +28,6 @@ type DotDataItem struct {
 	Size   int     `json:"size"`
 	Width  int     `json:"width"`
 	Height int     `json:"height"`
-	Text   string  `json:"text"`
 	Shape  string  `json:"shape"`
 	Angle  float64 `json:"angle"`
 	Color  string  `json:"color"`
@@ -123,5 +122,3 @@ func GenerateShapeClickCaptcha() (*ShapeClickCaptchaData, error) {
 		DotData:      dots,
 	}, nil
 }
-
-

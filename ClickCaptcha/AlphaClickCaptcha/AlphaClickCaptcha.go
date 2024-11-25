@@ -15,17 +15,19 @@ import (
 
 // AlphaClickCaptchaData represents the data returned from the CAPTCHA generation process.
 type AlphaClickCaptchaData struct {
-	CaptchaImage string          `json:"captcha_image"` // Base64-encoded CAPTCHA image
-	ThumbImage   string          `json:"thumb_image"`   // Base64-encoded thumbnail image
-	DotData      []DotDataItem   `json:"dot_data"`      // Slice of dot data (characters)
+	CaptchaImage string        `json:"captcha_image"` // Base64-encoded CAPTCHA image
+	ThumbImage   string        `json:"thumb_image"`   // Base64-encoded thumbnail image
+	DotData      []DotDataItem `json:"dot_data"`      // Slice of dot data (characters)
 }
 
-// DotDataItem represents a single clickable character's position and details.
 type DotDataItem struct {
-	Index int    `json:"index"`
-	X     int    `json:"x"`
-	Y     int    `json:"y"`
-	Text  string `json:"text"`
+	Index  int     `json:"index"`
+	X      int     `json:"x"`
+	Y      int     `json:"y"`
+	Text   string  `json:"text"`
+	Angle  float64 `json:"angle"`
+	Color  string  `json:"color"`
+	Color2 string  `json:"color2"`
 }
 
 var textCapt click.Captcha
@@ -68,10 +70,16 @@ func GenerateAlphaClickCaptcha() (*AlphaClickCaptchaData, error) {
 	}
 
 	// Convert dotData (JSON) to Go objects
-	var dots []DotDataItem
+	var dotMap map[string]DotDataItem
 	dotBytes, _ := json.Marshal(dotData)
-	if err := json.Unmarshal(dotBytes, &dots); err != nil {
+	if err := json.Unmarshal(dotBytes, &dotMap); err != nil {
 		return nil, fmt.Errorf("failed to parse dot data: %v", err)
+	}
+
+	// Convert map to slice
+	dots := make([]DotDataItem, 0, len(dotMap))
+	for _, item := range dotMap {
+		dots = append(dots, item)
 	}
 
 	// Generate base64 CAPTCHA image
@@ -86,7 +94,7 @@ func GenerateAlphaClickCaptcha() (*AlphaClickCaptchaData, error) {
 		return nil, fmt.Errorf("failed to get puzzle image: %v", err)
 	}
 
-	// Return the structured response
+	// Return the response
 	return &AlphaClickCaptchaData{
 		CaptchaImage: CaptchaImage,
 		ThumbImage:   ThumbImage,

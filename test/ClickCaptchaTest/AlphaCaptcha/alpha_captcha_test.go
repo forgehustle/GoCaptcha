@@ -1,23 +1,23 @@
-package ShapeClickCaptcha
+package AlphaClickCaptcha
 
 import (
-	ShapeClickCaptcha "GoCaptcha/ClickCaptcha/ShapeClickCaptcha"
+	AlphaClickCaptcha "GoCaptcha/ClickCaptcha/AlphaClickCaptcha"
 	"testing"
 )
 
-// TestGenerateShapeClickCaptcha tests the GenerateShapeClickCaptcha function.
-func TestGenerateShapeClickCaptcha(t *testing.T) {
+// TestGenerateAlphaClickCaptcha tests the GenerateAlphaClickCaptcha function.
+func TestGenerateAlphaClickCaptcha(t *testing.T) {
 	// Call the function
-	result, err := ShapeClickCaptcha.GenerateShapeClickCaptcha()
+	result, err := AlphaClickCaptcha.GenerateAlphaClickCaptcha()
 
 	// Check for errors
 	if err != nil {
-		t.Fatalf("GenerateShapeClickCaptcha returned an error: %v", err)
+		t.Fatalf("GenerateAlphaClickCaptcha returned an error: %v", err)
 	}
 
 	// Verify the result is not nil
 	if result == nil {
-		t.Fatalf("GenerateShapeClickCaptcha returned nil result")
+		t.Fatalf("GenerateAlphaClickCaptcha returned nil result")
 	}
 
 	// Verify CAPTCHA image is not empty
@@ -37,17 +37,14 @@ func TestGenerateShapeClickCaptcha(t *testing.T) {
 
 	// Check the contents of DotData
 	for _, dot := range result.DotData {
+		if dot.Text == "" {
+			t.Errorf("DotData item is missing text value: %+v", dot)
+		}
 		if dot.X < 0 || dot.Y < 0 {
 			t.Errorf("DotData item has invalid coordinates: %+v", dot)
 		}
 		if dot.Angle < 0 || dot.Angle > 360 {
 			t.Errorf("DotData item has an invalid angle: %+v", dot)
-		}
-		if dot.Size <= 0 {
-			t.Errorf("DotData item has invalid size: %+v", dot)
-		}
-		if dot.Width <= 0 || dot.Height <= 0 {
-			t.Errorf("DotData item has invalid width or height: %+v", dot)
 		}
 	}
 }

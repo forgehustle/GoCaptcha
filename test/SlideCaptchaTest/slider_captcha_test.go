@@ -1,8 +1,8 @@
 package SlideCaptcha
 
 import (
-	"testing"
 	SlideCaptcha "GoCaptcha/SlideCaptcha"
+	"testing"
 )
 
 func TestGenerateSlideCaptcha(t *testing.T) {
