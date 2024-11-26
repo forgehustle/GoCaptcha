@@ -12,13 +12,13 @@ import (
 
 // RotateCaptchaData represents the data returned from the CAPTCHA generation process.
 type RotateCaptchaData struct {
-	CaptchaImage  string `json:"captcha_image"`  // Base64-encoded CAPTCHA image
-	ThumbImage    string `json:"thumb_image"`    // Base64-encoded thumbnail image
-	ParentWidth   int    `json:"parent_width"`   // Parent container width
-	ParentHeight  int    `json:"parent_height"`  // Parent container height
-	Width         int    `json:"width"`          // Width of the draggable component
-	Height        int    `json:"height"`         // Height of the draggable component
-	Angle         int    `json:"angle"`          // Angle of rotation
+	CaptchaImage string `json:"captcha_image"` // Base64-encoded CAPTCHA image
+	ThumbImage   string `json:"thumb_image"`   // Base64-encoded thumbnail image
+	ParentWidth  int    `json:"parent_width"`  // Parent container width
+	ParentHeight int    `json:"parent_height"` // Parent container height
+	Width        int    `json:"width"`         // Width of the draggable component
+	Height       int    `json:"height"`        // Height of the draggable component
+	Angle        int    `json:"angle"`         // Angle of rotation
 }
 
 var rotateCapt rotate.Captcha
@@ -84,12 +84,12 @@ func GenerateRotateCaptcha() (*RotateCaptchaData, error) {
 
 	// Return the response
 	return &RotateCaptchaData{
-		CaptchaImage:  CaptchaImage,
-		ThumbImage:    ThumbImage,
-		ParentWidth:   parentWidth,
-		ParentHeight:  parentHeight,
-		Width:         width,
-		Height:        height,
-		Angle:         angle,
+		CaptchaImage: CaptchaImage,
+		ThumbImage:   ThumbImage,
+		ParentWidth:  parentWidth,
+		ParentHeight: parentHeight,
+		Width:        width,
+		Height:       height,
+		Angle:        angle,
 	}, nil
 }

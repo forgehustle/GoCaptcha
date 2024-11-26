@@ -1,9 +1,9 @@
 package main
 
 import (
+	RotateCaptcha "GoCaptcha/RotateCaptcha"
 	"fmt"
 	"log"
-	RotateCaptcha "GoCaptcha/RotateCaptcha"
 )
 
 func main() {
