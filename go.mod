@@ -1,4 +1,4 @@
-module GoCaptcha
+module github.com/forgehustle/GoCaptcha
 
 go 1.23.3
 
